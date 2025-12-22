@@ -1,0 +1,647 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: 3fr 130px 140px 100px 90px 140px 250px 80px;
+  gap: 1px;
+  background: #ddd;
+  border: 1px solid #ccc;
+}
+
+.grid-header {
+  background: #f5f5f5;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.grid-header.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.grid-header.sortable:hover {
+  background: #e9ecef;
+}
+
+.grid-cell {
+  background: white;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.cell-name {
+  text-align: left;
+  padding-left: 12px;
+  font-weight: 500;
+  position: relative;
+}
+
+.cell-name:hover {
+  background: #f8f9fa;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: help;
+}
+
+.activity-name-text {
+  display: block;
+  width: 100%;
+}
+
+.custom-tooltip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 8px;
+  background: #2c3e50;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  min-width: 300px;
+  max-width: 450px;
+  font-size: 13px;
+  line-height: 1.6;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  border: 6px solid transparent;
+  border-bottom-color: #2c3e50;
+}
+
+.tooltip-content {
+  margin-bottom: 12px;
+}
+
+.tooltip-line {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.tooltip-line:last-child {
+  border-bottom: none;
+}
+
+.tooltip-actions {
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-reset-stats-tooltip {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 6px 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-reset-stats-tooltip:hover:not(:disabled) {
+  background: #c82333;
+  transform: scale(1.02);
+}
+
+.btn-reset-stats-tooltip:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cell-category {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.cell-tags {
+  font-size: 0.75em;
+  color: #6c757d;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.cell-boolean.yes {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.cell-boolean.no {
+  color: #dc3545;
+}
+
+.cell-boost.boostable {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.cell-boost.not-boostable {
+  color: #6c757d;
+}
+
+.cell-efficiency {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.cell-efficiency.high {
+  color: #28a745;
+  background: #d4edda !important;
+}
+
+.cell-efficiency.medium {
+  color: #856404;
+  background: #fff3cd !important;
+}
+
+.cell-payout {
+  font-weight: 500;
+  color: #0056b3;
+}
+
+.cell-stats {
+  font-size: 0.9em;
+  color: #495057;
+  font-weight: 500;
+}
+
+.cell-estado {
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+.estado-timer {
+  color: #0056b3;
+}
+
+.estado-cooldown {
+  color: #856404;
+}
+
+.estado-resupply {
+  color: #6c757d;
+}
+
+.btn-start, .btn-stop, .btn-cooldown, .btn-resupply {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-start {
+  background: #28a745;
+  color: white;
+}
+
+.btn-start:hover {
+  background: #218838;
+}
+
+.btn-stop {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-stop:hover {
+  background: #c82333;
+}
+
+.btn-cooldown {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-cooldown:hover {
+  background: #e0a800;
+}
+
+.btn-resupply {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-resupply:hover {
+  background: #138496;
+}
+
+.btn-sell {
+  background: #6f42c1;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-sell:hover {
+  background: #5a32a3;
+}
+
+.status-waiting {
+  color: #6c757d;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2em;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.activity-filters {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.filter-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-search {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 180px;
+  background: white;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-checkbox input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.filter-year-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.filter-year-range label {
+  font-weight: 500;
+}
+
+.filter-year-range span {
+  color: #6c757d;
+}
+
+.filter-year {
+  width: 80px;
+  padding: 6px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-efficiency-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.filter-efficiency-range label {
+  font-weight: 500;
+}
+
+.filter-efficiency {
+  width: 120px;
+  padding: 6px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-profitable {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.activities-summary {
+  text-align: center;
+  padding: 12px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.activity-grid-container {
+  margin: 20px 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+.notification-toast {
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification-center {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.notification-center-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.notification-center-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.btn-clear-all {
+  padding: 6px 12px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-stop {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.btn-stop:hover {
+  background: #c82333;
+}
+
+.control-cell {
+  min-height: 40px;
+}
+
+.paused-state {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+}
+
+.money-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 2px solid #ffc107;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.money-input:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+}
+
+.btn-confirm {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-confirm:hover {
+  background: #218838;
+}
+
+.btn-collect {
+  background: #17a2b8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.btn-collect:hover {
+  background: #138496;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+  }
+}
+
+.btn-clear-all:hover {
+  background: #5a6268;
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f3f5;
+  transition: background 0.2s;
+}
+
+.notification-item:hover {
+  background: #f8f9fa;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.cooldown {
+  border-left: 4px solid #28a745;
+}
+
+.notification-item.resupply {
+  border-left: 4px solid #17a2b8;
+}
+
+.notification-item.safe {
+  border-left: 4px solid #ffc107;
+}
+
+.notification-item.passive-ready {
+  border-left: 4px solid #6f42c1;
+}
+
+.notification-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #212529;
+  margin-bottom: 4px;
+}
+
+.notification-message {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.notification-dismiss {
+  padding: 8px 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.notification-dismiss:hover {
+  background: #218838;
+}

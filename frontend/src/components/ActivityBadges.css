@@ -1,0 +1,89 @@
+.activity-badges {
+  display: inline-flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.activity-badges.compact {
+  gap: 3px;
+  margin-left: 6px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.activity-badges.compact .badge {
+  padding: 1px 4px;
+  font-size: 0.7rem;
+}
+
+.badge-deprecated {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.badge-source {
+  background-color: #4ecdc4;
+  color: white;
+}
+
+.badge-source-dataset {
+  background-color: #95e1d3;
+  color: #2c3e50;
+}
+
+.badge-source-wiki {
+  background-color: #74b9ff;
+  color: white;
+}
+
+.badge-source-manual {
+  background-color: #a29bfe;
+  color: white;
+}
+
+.badge-solo {
+  background-color: #feca57;
+  color: #2c3e50;
+}
+
+.badge-passive {
+  background-color: #48dbfb;
+  color: #2c3e50;
+}
+
+.badge-cooldown {
+  background-color: #ff9ff3;
+  color: #2c3e50;
+}
+
+.badge-no-data {
+  background-color: #dfe6e9;
+  color: #636e72;
+  font-style: italic;
+}
+
+/* Grid cell adjustments for deprecated activities */
+.grid-cell.cell-name.deprecated {
+  opacity: 0.6;
+}
+
+.grid-cell.cell-name.deprecated .activity-name-text {
+  text-decoration: line-through;
+}
+
+.activity-name-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
