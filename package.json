@@ -4,7 +4,7 @@
   "description": "Comprehensive management and statistics system for optimizing GTA Online farming with persistent data and real-time analytics.  Full Description: GTA Grinding Manager is a full-stack web application designed for GTA Online players who want to optimize their farming sessions. The system provides:  Real-time tracking of activities and earnings Persistent database with historical statistics Efficiency analysis by activity and category Cooldown management with automatic notifications Interactive dashboard with data visualization RESTful API for external tool integration Key Features:  Responsive frontend with HTML/CSS/JavaScript Node.js backend with Express SQLite database for persistence REST API for data management Cooldown notification system Profitability and efficiency analysis Tech Stack:  Frontend: HTML5, CSS3, Vanilla JavaScript Backend: Node.js, Express.js Database: SQLite3 API: RESTful with CORS enabled Perfect for serious GTA Online players looking to maximize their grinding efficiency!",
   "main": "index.js",
   "scripts": {
-    "server": "node server.js",
+    "server": "node server-simple.js",
     "dev": "concurrently \"npm run server\" \"cd frontend && npm run dev\"",
     "build": "cd frontend && npm run build",
     "start": "npm run server"
@@ -22,11 +22,16 @@
   },
   "homepage": "https://github.com/operezol/gta-grinding-manager#readme",
   "dependencies": {
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
     "connect-history-api-fallback": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "sqlite3": "^5.1.7"
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

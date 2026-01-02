@@ -1,0 +1,3 @@
+@echo off
+echo Starting simplified server...
+node server-simple.js
